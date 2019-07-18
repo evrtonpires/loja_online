@@ -4,6 +4,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:loja_virtual/dados/carrinho_produto.dart';
 import 'package:loja_virtual/models/modelo_carrinho.dart';
 import 'package:loja_virtual/models/modelo_usuario.dart';
+import 'package:loja_virtual/ui/TelaCarrinho.dart';
 import 'package:loja_virtual/ui/TelaLogin.dart';
 
 class TelaProduto extends StatefulWidget {
@@ -128,6 +129,12 @@ class _TelaProdutoState extends State<TelaProduto> {
                         carrinhoProduto.categoria = dados.categoria;
 
                         ModeloCarrinho.of(context).addItemCarrinho(carrinhoProduto);
+
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context){
+                              return Carrinho();
+                            })
+                        );
                       }
                       else{
                         Navigator.of(context).push(

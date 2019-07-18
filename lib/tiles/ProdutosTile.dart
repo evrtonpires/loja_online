@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/dados/DadosProdutos.dart';
-import 'package:loja_virtual/ui/telaProdutos.dart';
+import 'package:loja_virtual/ui/TelaProdutos.dart';
 
 class ProdutoTile extends StatelessWidget {
   final String tipo;
