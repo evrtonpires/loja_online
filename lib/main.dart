@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/modelo_carrinho.dart';
 import 'package:loja_virtual/models/modelo_usuario.dart';
 import 'package:loja_virtual/ui/TelaInicial.dart';
-import 'package:loja_virtual/ui/TelaLogin.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() {
