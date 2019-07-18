@@ -14,18 +14,18 @@ class LojaVirtual extends StatelessWidget {
     return ScopedModel<ModeloUsuario>(
         model: ModeloUsuario(),
         child: ScopedModelDescendant<ModeloUsuario>(
-            builder: (context,child,model){
-              return ScopedModel<ModeloCarrinho>(
-                model: ModeloCarrinho(model),
-                child: MaterialApp(
-                    title: "Loja Virtual",
-                    theme: ThemeData(
-                      primarySwatch: Colors.teal,
-                      primaryColor: Color.fromARGB(255, 211, 118, 130),
-                    ),
-                    debugShowCheckedModeBanner: false,
-                    home: HomeScreen()),
-              );
-            }));
+            builder: (context, child, model) {
+          return ScopedModel<ModeloCarrinho>(
+            model: ModeloCarrinho(model),
+            child: MaterialApp(
+                title: "Loja Virtual",
+                theme: ThemeData(
+                  primarySwatch: Colors.teal,
+                  primaryColor: Color.fromARGB(255, 211, 118, 130),
+                ),
+                debugShowCheckedModeBanner: false,
+                home: HomeScreen()),
+          );
+        }));
   }
 }

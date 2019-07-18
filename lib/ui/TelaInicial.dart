@@ -5,7 +5,6 @@ import 'package:loja_virtual/widgets/BotaoCarrinho.dart';
 import 'package:loja_virtual/widgets/CustomDrawer.dart';
 
 class HomeScreen extends StatelessWidget {
-
   final _ControladorPagina = PageController();
 
   @override
@@ -14,23 +13,24 @@ class HomeScreen extends StatelessWidget {
       controller: _ControladorPagina,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-       Scaffold(
-         body:  HomeTab(),
-         drawer: CustomDrawer(_ControladorPagina),
-         floatingActionButton: BotaoCarrinho(),
-       ),
-       Scaffold(
-         appBar: AppBar(
-           title: Text("Categorias"),
-           centerTitle: true,
-         ),
-         drawer: CustomDrawer(_ControladorPagina),
-         body: CategoriasTab(),
-         floatingActionButton: BotaoCarrinho(),
-    )
-        ,Container(
+        Scaffold(
+          body: HomeTab(),
+          drawer: CustomDrawer(_ControladorPagina),
+          floatingActionButton: BotaoCarrinho(),
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: Text("Categorias"),
+            centerTitle: true,
+          ),
+          drawer: CustomDrawer(_ControladorPagina),
+          body: CategoriasTab(),
+          floatingActionButton: BotaoCarrinho(),
+        ),
+        Container(
           color: Colors.yellow,
-        ),Container(
+        ),
+        Container(
           color: Colors.red,
         ),
       ],

@@ -89,9 +89,9 @@ class _TelaProdutoState extends State<TelaProduto> {
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            if(tamanhoSelecionado == s){
+                            if (tamanhoSelecionado == s) {
                               tamanhoSelecionado = null;
-                            }else {
+                            } else {
                               tamanhoSelecionado = s;
                             }
                           });
@@ -119,36 +119,37 @@ class _TelaProdutoState extends State<TelaProduto> {
                 SizedBox(
                   height: 50.0,
                   child: RaisedButton(
-                    onPressed: tamanhoSelecionado != null ? () {
-                      if(ModeloUsuario.of(context).isLoggedIn()){
+                    onPressed: tamanhoSelecionado != null
+                        ? () {
+                            if (ModeloUsuario.of(context).isLoggedIn()) {
+                              CarrinhoProduto carrinhoProduto =
+                                  CarrinhoProduto();
+                              carrinhoProduto.tamanho = tamanhoSelecionado;
+                              carrinhoProduto.quantidade = 1;
+                              carrinhoProduto.pid = dados.id;
+                              carrinhoProduto.categoria = dados.categoria;
 
-                        CarrinhoProduto carrinhoProduto = CarrinhoProduto();
-                        carrinhoProduto.tamanho = tamanhoSelecionado;
-                        carrinhoProduto.quantidade = 1;
-                        carrinhoProduto.pid = dados.id;
-                        carrinhoProduto.categoria = dados.categoria;
+                              ModeloCarrinho.of(context)
+                                  .addItemCarrinho(carrinhoProduto);
 
-                        ModeloCarrinho.of(context).addItemCarrinho(carrinhoProduto);
-
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context){
-                              return Carrinho();
-                            })
-                        );
-                      }
-                      else{
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context){
-                            return Login();
-                          })
-                        );
-                      }
-                    } : null,
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (context) {
+                                return Carrinho();
+                              }));
+                            } else {
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (context) {
+                                return Login();
+                              }));
+                            }
+                          }
+                        : null,
                     color: corPrimaria,
                     textColor: Colors.white,
                     child: Text(
-                      ModeloUsuario.of(context).isLoggedIn() ?
-                      "Adicionar ao Carrinho" : "Entre para Comprar",
+                      ModeloUsuario.of(context).isLoggedIn()
+                          ? "Adicionar ao Carrinho"
+                          : "Entre para Comprar",
                       style: TextStyle(fontSize: 18.0),
                     ),
                   ),

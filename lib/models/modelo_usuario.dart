@@ -4,14 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ModeloUsuario extends Model {
-
-  
   bool isLoading = false;
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseUser firebaseUser;
   Map<String, dynamic> userDados = Map();
 
-  static ModeloUsuario of (BuildContext context) {
+  static ModeloUsuario of(BuildContext context) {
     return ScopedModel.of<ModeloUsuario>(context);
   }
 
@@ -50,7 +48,7 @@ class ModeloUsuario extends Model {
     });
   }
 
-  void signIn (
+  void signIn(
       {@required String email,
       @required String senha,
       @required VoidCallback onSuccess,
@@ -59,7 +57,7 @@ class ModeloUsuario extends Model {
     notifyListeners();
     _auth
         .signInWithEmailAndPassword(email: email, password: senha)
-        .then((user) async{
+        .then((user) async {
       firebaseUser = user;
       await _loadCurrentUser();
       onSuccess();
@@ -98,12 +96,16 @@ class ModeloUsuario extends Model {
         .setData(userDados);
   }
 
-  Future<Null> _loadCurrentUser() async{
-    if(firebaseUser == null){
+  Future<Null> _loadCurrentUser() async {
+    if (firebaseUser == null) {
       firebaseUser = await _auth.currentUser();
-    } if(firebaseUser != null){
-      if(userDados["nome"] == null){
-        DocumentSnapshot docuser = await Firestore.instance.collection("usuarios").document(firebaseUser.uid).get();
+    }
+    if (firebaseUser != null) {
+      if (userDados["nome"] == null) {
+        DocumentSnapshot docuser = await Firestore.instance
+            .collection("usuarios")
+            .document(firebaseUser.uid)
+            .get();
         userDados = docuser.data;
       }
     }

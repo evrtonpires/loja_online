@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/ui/TelaCategorias.dart';
 
 class CategoriaTile extends StatelessWidget {
-
   final DocumentSnapshot documentSnapshot;
 
-   CategoriaTile(this.documentSnapshot);
-
+  CategoriaTile(this.documentSnapshot);
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +17,10 @@ class CategoriaTile extends StatelessWidget {
       ),
       title: Text(documentSnapshot.data["titulo"]),
       trailing: Icon(Icons.keyboard_arrow_right),
-
-      onTap: (){
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context){
-            return TelaCategoria(documentSnapshot);
-          })
-        );
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return TelaCategoria(documentSnapshot);
+        }));
       },
     );
   }

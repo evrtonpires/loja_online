@@ -135,8 +135,6 @@ class _CadastroState extends State<Cadastro> {
       content: Text("Falha ao Criar Usuario!"),
       backgroundColor: Colors.red,
       duration: Duration(seconds: 2),
-
-
     ));
   }
 }

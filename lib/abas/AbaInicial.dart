@@ -7,20 +7,13 @@ import 'package:transparent_image/transparent_image.dart';
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    Widget _BuildBodyBack() =>
-       Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors:
-          [
-            Color.fromARGB(255, 211,118,130),
-            Color.fromARGB(255, 253,181,168),
-          ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight
-          )
-        ),
-      );
+    Widget _BuildBodyBack() => Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 211, 118, 130),
+            Color.fromARGB(255, 253, 181, 168),
+          ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+        );
 
     return Stack(
       children: <Widget>[
@@ -38,40 +31,41 @@ class HomeTab extends StatelessWidget {
               ),
             ),
             FutureBuilder<QuerySnapshot>(
-              future: Firestore.instance.collection("home")
-              .orderBy("posicao").getDocuments(),
-
-              builder: (context , snapshot){
-                if(!snapshot.hasData){
+              future: Firestore.instance
+                  .collection("home")
+                  .orderBy("posicao")
+                  .getDocuments(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
                   return SliverToBoxAdapter(
                     child: Container(
-                      height: 200.0,
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      )
-                    ),
+                        height: 200.0,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        )),
                   );
-                }
-                else{
-                  return SliverStaggeredGrid.count(crossAxisCount: 2,
-                      mainAxisSpacing: 1.0,
-                      crossAxisSpacing: 1.0,
+                } else {
+                  return SliverStaggeredGrid.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 1.0,
+                    crossAxisSpacing: 1.0,
                     //dimensao
-                    staggeredTiles: snapshot.data.documents.map((doc){
+                    staggeredTiles: snapshot.data.documents.map((doc) {
                       return StaggeredTile.count(doc.data["x"], doc.data["y"]);
                     }).toList(),
-                    children: snapshot.data.documents.map((doc){
+                    children: snapshot.data.documents.map((doc) {
                       return FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: doc.data["image"],
-                          fit: BoxFit.cover,);
+                        placeholder: kTransparentImage,
+                        image: doc.data["image"],
+                        fit: BoxFit.cover,
+                      );
                     }).toList(),
                   );
                 }
               },
             )
-
           ],
         )
       ],

@@ -42,44 +42,45 @@ class CustomDrawer extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: 0.0,
-                      bottom: 0.0,
-                      child: ScopedModelDescendant<ModeloUsuario>(
-                        builder: (context,child,model){
-                         // print(model.isLoggedIn());
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Olá ${!model.isLoggedIn() ? "" : model.userDados["nome"]}",
-                                style: TextStyle(
-                                    fontSize: 18.0, fontWeight: FontWeight.bold),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  if(!model.isLoggedIn()){
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) {
-                                        return Login();
-                                      }));
-                                }
-                                  else{
-                                    model.signOut();
-                                  }},
-                                child: Text(
-                                  !model.isLoggedIn() ?
-                                  "Entre ou Cadastre-se" : "Sair",
+                        left: 0.0,
+                        bottom: 0.0,
+                        child: ScopedModelDescendant<ModeloUsuario>(
+                          builder: (context, child, model) {
+                            // print(model.isLoggedIn());
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Olá ${!model.isLoggedIn() ? "" : model.userDados["nome"]}",
                                   style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 16.0,
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
-                      )
-                    ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (!model.isLoggedIn()) {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(builder: (context) {
+                                        return Login();
+                                      }));
+                                    } else {
+                                      model.signOut();
+                                    }
+                                  },
+                                  child: Text(
+                                    !model.isLoggedIn()
+                                        ? "Entre ou Cadastre-se"
+                                        : "Sair",
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        )),
                   ],
                 ),
               ),

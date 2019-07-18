@@ -77,20 +77,25 @@ class _LoginState extends State<Login> {
                       alignment: Alignment.centerRight,
                       child: FlatButton(
                         onPressed: () {
-                          if (_email.text.isEmpty){
+                          if (_email.text.isEmpty) {
                             _scaffoldKey.currentState.showSnackBar(SnackBar(
-                              content: Text("Insira seu Email para recuperação",
-                                textAlign: TextAlign.center,),
+                              content: Text(
+                                "Insira seu Email para recuperação",
+                                textAlign: TextAlign.center,
+                              ),
                               backgroundColor: Colors.red,
-                              duration: Duration(seconds: 2),));
-                          }
-                          else{
+                              duration: Duration(seconds: 2),
+                            ));
+                          } else {
                             model.recuperarSenha(_email.text);
                             _scaffoldKey.currentState.showSnackBar(SnackBar(
-                              content: Text("Confira seu Email",
-                                textAlign: TextAlign.center,),
+                              content: Text(
+                                "Confira seu Email",
+                                textAlign: TextAlign.center,
+                              ),
                               backgroundColor: Theme.of(context).primaryColor,
-                              duration: Duration(seconds: 2),));
+                              duration: Duration(seconds: 2),
+                            ));
                           }
                         },
                         child: Text(
@@ -111,9 +116,7 @@ class _LoginState extends State<Login> {
                           style: TextStyle(fontSize: 16.0),
                         ),
                         textColor: Colors.white,
-                        color: Theme
-                            .of(context)
-                            .primaryColor,
+                        color: Theme.of(context).primaryColor,
                         onPressed: () {
                           if (_formKey.currentState.validate()) {}
                           model.signIn(
@@ -135,12 +138,15 @@ class _LoginState extends State<Login> {
   }
 
   void _onFail() {
-    if(_senha.text.isNotEmpty){
+    if (_senha.text.isNotEmpty) {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
-        content: Text("Falha ao Entrar!\nVerifique Email e Senha.",
-          textAlign: TextAlign.center,),
+        content: Text(
+          "Falha ao Entrar!\nVerifique Email e Senha.",
+          textAlign: TextAlign.center,
+        ),
         backgroundColor: Colors.red,
-        duration: Duration(seconds: 4),));
+        duration: Duration(seconds: 4),
+      ));
     }
   }
 }
