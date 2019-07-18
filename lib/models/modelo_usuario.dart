@@ -11,6 +11,16 @@ class ModeloUsuario extends Model {
   FirebaseUser firebaseUser;
   Map<String, dynamic> userDados = Map();
 
+  static ModeloUsuario of (BuildContext context) {
+    return ScopedModel.of<ModeloUsuario>(context);
+  }
+
+  @override
+  void addListener(VoidCallback listener) {
+    super.addListener(listener);
+    _loadCurrentUser();
+  }
+
   //usuario atual
   void signUp(
       {@required Map<String, dynamic> userDados,
@@ -98,11 +108,5 @@ class ModeloUsuario extends Model {
       }
     }
     notifyListeners();
-  }
-
-  @override
-  void addListener(VoidCallback listener) {
-    super.addListener(listener);
-    _loadCurrentUser();
   }
 }

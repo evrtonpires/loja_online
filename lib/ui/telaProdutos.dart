@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/dados/DadosProdutos.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:loja_virtual/dados/carrinho_produto.dart';
+import 'package:loja_virtual/models/modelo_carrinho.dart';
+import 'package:loja_virtual/models/modelo_usuario.dart';
+import 'package:loja_virtual/ui/TelaLogin.dart';
 
 class TelaProduto extends StatefulWidget {
   dadosProduto dados;
@@ -114,11 +118,30 @@ class _TelaProdutoState extends State<TelaProduto> {
                 SizedBox(
                   height: 50.0,
                   child: RaisedButton(
-                    onPressed: tamanhoSelecionado != null ? () {} : null,
+                    onPressed: tamanhoSelecionado != null ? () {
+                      if(ModeloUsuario.of(context).isLoggedIn()){
+
+                        CarrinhoProduto carrinhoProduto = CarrinhoProduto();
+                        carrinhoProduto.tamanho = tamanhoSelecionado;
+                        carrinhoProduto.quantidade = 1;
+                        carrinhoProduto.pid = dados.id;
+                        carrinhoProduto.categoria = dados.categoria;
+
+                        ModeloCarrinho.of(context).addItemCarrinho(carrinhoProduto);
+                      }
+                      else{
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context){
+                            return Login();
+                          })
+                        );
+                      }
+                    } : null,
                     color: corPrimaria,
                     textColor: Colors.white,
                     child: Text(
-                      "Adicionar ao Carrinho",
+                      ModeloUsuario.of(context).isLoggedIn() ?
+                      "Adicionar ao Carrinho" : "Entre para Comprar",
                       style: TextStyle(fontSize: 18.0),
                     ),
                   ),

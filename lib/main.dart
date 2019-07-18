@@ -13,7 +13,7 @@ class LojaVirtual extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModel<ModeloUsuario>(
         model: ModeloUsuario(),
-        child: ScopedModelDescendant(
+        child: ScopedModelDescendant<ModeloUsuario>(
             builder: (context,child,model){
               return ScopedModel<ModeloCarrinho>(
                 model: ModeloCarrinho(model),

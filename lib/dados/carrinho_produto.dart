@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loja_virtual/dados/DadosProdutos.dart';
 
 class CarrinhoProduto {
+
+  CarrinhoProduto();
+
   String cid;
 
   String categoria;
@@ -26,7 +29,7 @@ class CarrinhoProduto {
       "pid" : pid,
       "quantidade" : quantidade,
       "tamanho" : tamanho,
-      "produto" : DadosProduto.resumoMap()
+     // "produto" : DadosProduto.resumoMap()
     };
   }
 }
