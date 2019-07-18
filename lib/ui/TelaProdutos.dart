@@ -7,6 +7,7 @@ import 'package:loja_virtual/models/modelo_usuario.dart';
 import 'package:loja_virtual/ui/TelaCarrinho.dart';
 import 'package:loja_virtual/ui/TelaLogin.dart';
 
+// ignore: must_be_immutable
 class TelaProduto extends StatefulWidget {
   DadosProduto dados;
 
