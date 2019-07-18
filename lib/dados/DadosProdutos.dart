@@ -15,13 +15,15 @@ class DadosProduto {
   DadosProduto.fromDocumentos(DocumentSnapshot snapshot) {
     id = snapshot.documentID;
 
-    titulo = snapshot.data["titulo"];
     descricao = snapshot.data["descricao"];
+
+    imagens = snapshot.data["imagens"];
 
     preco = snapshot.data["preco"] + .0;
 
-    imagens = snapshot.data["imagens"];
     tamanho = snapshot.data["tamanho"];
+
+    titulo = snapshot.data["titulo"];
   }
 
   Map<String, dynamic> resumoMap() {

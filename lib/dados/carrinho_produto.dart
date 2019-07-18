@@ -22,6 +22,7 @@ class CarrinhoProduto {
     cid = document.documentID;
     categoria = document.data["categoria"];
     pid = document.data["pdi"];
+    quantidade = document.data["quantidade"];
     tamanho = document.data["tamanho"];
   }
 
@@ -31,7 +32,7 @@ class CarrinhoProduto {
       "pid": pid,
       "quantidade": quantidade,
       "tamanho": tamanho,
-      // "produto" : DadosProduto.resumoMap()
+      //"produto" : dadosProduto.resumoMap()
     };
   }
 }
