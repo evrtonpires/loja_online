@@ -86,7 +86,7 @@ class _TelaProdutoState extends State<TelaProduto> {
                       mainAxisSpacing: 8.0,
                       childAspectRatio: 0.5,
                     ),
-                    children: dados.tamanho.map((s) {
+                    children: dados.tamanhos.map((s) {
                       return GestureDetector(
                         onTap: () {
                           setState(() {

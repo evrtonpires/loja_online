@@ -5,7 +5,7 @@ import 'package:loja_virtual/dados/DadosProdutos.dart';
 import 'DadosProdutos.dart';
 
 class CarrinhoProduto {
-  CarrinhoProduto();
+
 
   String cid;
 
@@ -18,12 +18,14 @@ class CarrinhoProduto {
 
   DadosProduto dadosProduto;
 
-  CarrinhoProduto.fromDocument(DocumentSnapshot document) {
-    cid = document.documentID;
-    categoria = document.data["categoria"];
-    pid = document.data["pdi"];
-    quantidade = document.data["quantidade"];
-    tamanho = document.data["tamanho"];
+  CarrinhoProduto();
+
+  CarrinhoProduto.fromDocument(DocumentSnapshot snapshot) {
+    cid = snapshot.documentID;
+    categoria = snapshot.data["categoria"];
+    pid = snapshot.data["pdi"];
+    quantidade = snapshot.data["quantidade"];
+    tamanho = snapshot.data["tamanho"];
   }
 
   Map<String, dynamic> toMap() {
@@ -32,7 +34,7 @@ class CarrinhoProduto {
       "pid": pid,
       "quantidade": quantidade,
       "tamanho": tamanho,
-      //"produto" : dadosProduto.resumoMap()
+      "produto" : dadosProduto.resumoMap()
     };
   }
 }
