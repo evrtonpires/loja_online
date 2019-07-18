@@ -8,7 +8,7 @@ import 'package:loja_virtual/ui/TelaCarrinho.dart';
 import 'package:loja_virtual/ui/TelaLogin.dart';
 
 class TelaProduto extends StatefulWidget {
-  dadosProduto dados;
+  DadosProduto dados;
 
   TelaProduto(this.dados);
 
@@ -17,7 +17,7 @@ class TelaProduto extends StatefulWidget {
 }
 
 class _TelaProdutoState extends State<TelaProduto> {
-  final dadosProduto dados;
+  final DadosProduto dados;
 
   String tamanhoSelecionado;
 

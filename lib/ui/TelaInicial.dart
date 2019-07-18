@@ -5,17 +5,17 @@ import 'package:loja_virtual/widgets/BotaoCarrinho.dart';
 import 'package:loja_virtual/widgets/CustomDrawer.dart';
 
 class HomeScreen extends StatelessWidget {
-  final _ControladorPagina = PageController();
+  final _controladorPagina = PageController();
 
   @override
   Widget build(BuildContext context) {
     return PageView(
-      controller: _ControladorPagina,
+      controller: _controladorPagina,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         Scaffold(
           body: HomeTab(),
-          drawer: CustomDrawer(_ControladorPagina),
+          drawer: CustomDrawer(_controladorPagina),
           floatingActionButton: BotaoCarrinho(),
         ),
         Scaffold(
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             title: Text("Categorias"),
             centerTitle: true,
           ),
-          drawer: CustomDrawer(_ControladorPagina),
+          drawer: CustomDrawer(_controladorPagina),
           body: CategoriasTab(),
           floatingActionButton: BotaoCarrinho(),
         ),

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class dadosProduto {
+class DadosProduto {
   String categoria;
   String id;
 
@@ -12,7 +12,7 @@ class dadosProduto {
   List imagens;
   List tamanho;
 
-  dadosProduto.fromDocumentos(DocumentSnapshot snapshot) {
+  DadosProduto.fromDocumentos(DocumentSnapshot snapshot) {
     id = snapshot.documentID;
 
     titulo = snapshot.data["titulo"];

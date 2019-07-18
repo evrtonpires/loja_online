@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loja_virtual/dados/DadosProdutos.dart';
 
+
+import 'DadosProdutos.dart';
+
 class CarrinhoProduto {
   CarrinhoProduto();
 
@@ -13,7 +16,7 @@ class CarrinhoProduto {
 
   String tamanho;
 
-  dadosProduto DadosProduto;
+  DadosProduto dadosProduto;
 
   CarrinhoProduto.fromDocument(DocumentSnapshot document) {
     cid = document.documentID;

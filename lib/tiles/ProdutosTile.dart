@@ -4,7 +4,7 @@ import 'package:loja_virtual/ui/TelaProdutos.dart';
 
 class ProdutoTile extends StatelessWidget {
   final String tipo;
-  final dadosProduto dados;
+  final DadosProduto dados;
 
   ProdutoTile(this.tipo, this.dados);
 

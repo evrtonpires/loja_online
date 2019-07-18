@@ -53,8 +53,8 @@ class TelaCategoria extends StatelessWidget {
                                     childAspectRatio: 0.65),
                             itemCount: snapshot.data.documents.length,
                             itemBuilder: (context, index) {
-                              dadosProduto dProduto =
-                                  dadosProduto.fromDocumentos(
+                              DadosProduto dProduto =
+                                  DadosProduto.fromDocumentos(
                                       snapshot.data.documents[index]);
 
                               dProduto.categoria = this.snapshot.documentID;
@@ -65,8 +65,8 @@ class TelaCategoria extends StatelessWidget {
                             padding: EdgeInsets.all(4.0),
                             itemCount: snapshot.data.documents.length,
                             itemBuilder: (context, index) {
-                              dadosProduto dProduto =
-                                  dadosProduto.fromDocumentos(
+                              DadosProduto dProduto =
+                                  DadosProduto.fromDocumentos(
                                       snapshot.data.documents[index]);
 
                               dProduto.categoria = this.snapshot.documentID;
