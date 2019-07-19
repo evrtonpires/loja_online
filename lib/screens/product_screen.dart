@@ -8,7 +8,6 @@ import 'package:loja_virtual/screens/cart_screen.dart';
 import 'package:loja_virtual/screens/login_screen.dart';
 
 class ProductScreen extends StatefulWidget {
-
   final ProductData product;
 
   ProductScreen(this.product);
@@ -18,7 +17,6 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-
   final ProductData product;
 
   String sizeSelecionado;
@@ -27,10 +25,11 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final Color primaryColor = Theme.of(context).primaryColor;
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(product.title),
         centerTitle: true,
@@ -40,7 +39,7 @@ class _ProductScreenState extends State<ProductScreen> {
           AspectRatio(
             aspectRatio: 0.9,
             child: Carousel(
-              images: product.images.map((url){
+              images: product.images.map((url) {
                 return NetworkImage(url);
               }).toList(),
               dotSize: 4.0,
@@ -57,75 +56,69 @@ class _ProductScreenState extends State<ProductScreen> {
               children: <Widget>[
                 Text(
                   product.title,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500
-                  ),
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
                   maxLines: 3,
                 ),
                 Text(
                   "R\$ ${product.price.toStringAsFixed(2)}",
                   style: TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor
-                  ),
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                      color: primaryColor),
                 ),
-                SizedBox(height: 16.0,),
+                SizedBox(
+                  height: 16.0,
+                ),
                 Text(
                   "Tamanho",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500
-                  ),
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: 34.0,
                   child: GridView(
-                      padding: EdgeInsets.symmetric(vertical: 4.0),
-                      scrollDirection: Axis.horizontal,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                          mainAxisSpacing: 8.0,
-                          childAspectRatio: 0.5
-                      ),
-                    children: product.sizes.map(
-                      (s){
-                        return GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              if(sizeSelecionado == s){
-                                sizeSelecionado = null;
-                              }else {
-                                sizeSelecionado = s;
-                              }
-                            });
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    padding: EdgeInsets.symmetric(vertical: 4.0),
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: 0.5),
+                    children: product.sizes.map((s) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (sizeSelecionado == s) {
+                              sizeSelecionado = null;
+                            } else {
+                              sizeSelecionado = s;
+                            }
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(4.0)),
                               border: Border.all(
-                                color: s == sizeSelecionado ? primaryColor : Colors.grey[500],
-                                width: 3.0
-                              )
-                            ),
-                            width: 50.0,
-                            alignment: Alignment.center,
-                            child: Text(s),
-                          ),
-                        );
-                      }
-                    ).toList(),
+                                  color: s == sizeSelecionado
+                                      ? primaryColor
+                                      : Colors.grey[500],
+                                  width: 3.0)),
+                          width: 50.0,
+                          alignment: Alignment.center,
+                          child: Text(s),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
-                SizedBox(height: 16.0,),
+                SizedBox(
+                  height: 16.0,
+                ),
                 SizedBox(
                   height: 44.0,
                   child: RaisedButton(
-                    onPressed: sizeSelecionado != null ?
-                    (){
-                      if(UserModel.of(context).isLoggedIn()){
-
+                    onPressed: sizeSelecionado != null
+                        ? () {
+                      if (UserModel.of(context).isLoggedIn()) {
                         CartProduct cartProduct = CartProduct();
                         cartProduct.size = sizeSelecionado;
                         cartProduct.quantity = 1;
@@ -135,37 +128,50 @@ class _ProductScreenState extends State<ProductScreen> {
 
                         CartModel.of(context).addCartItem(cartProduct);
 
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>CartScreen())
-                        );
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text(
+                            "Produto Adicionado ao Carrinho!",
+                            textAlign: TextAlign.center,
+                          ),
+                          backgroundColor: Theme
+                              .of(context)
+                              .primaryColor,
+                          duration: Duration(seconds: 2),
+                        ));
+                        Future.delayed(Duration(seconds: 2)).then((_) {
+                          Navigator.of(context).pop();
+                        });
+
+//                        Navigator.of(context).push(
+//                            MaterialPageRoute(builder: (context)=>CartScreen())
+//                        );
 
                       } else {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context)=>LoginScreen())
-                        );
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
                       }
-                    } : null,
-                    child: Text(UserModel.of(context).isLoggedIn() ? "Adicionar ao Carrinho"
-                      : "Entre para Comprar",
+                    }
+                        : null,
+                    child: Text(
+                      UserModel.of(context).isLoggedIn()
+                          ? "Adicionar ao Carrinho"
+                          : "Entre para Comprar",
                       style: TextStyle(fontSize: 18.0),
                     ),
                     color: primaryColor,
                     textColor: Colors.white,
                   ),
                 ),
-                SizedBox(height: 16.0,),
+                SizedBox(
+                  height: 16.0,
+                ),
                 Text(
                   "Descrição",
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500
-                  ),
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                 ),
                 Text(
                   product.description,
-                  style: TextStyle(
-                    fontSize: 16.0
-                  ),
+                  style: TextStyle(fontSize: 16.0),
                 )
               ],
             ),
