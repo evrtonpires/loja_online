@@ -1,27 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:loja_virtual/tiles/Categorias_Tiles.dart';
+import 'package:loja_virtual/tiles/category_tile.dart';
 
-class CategoriasTab extends StatelessWidget {
+class ProductsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
-      future: Firestore.instance.collection("produtos").getDocuments(),
+      future: Firestore.instance.collection("products").getDocuments(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData) {
+        if (!snapshot.hasData)
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else {
-          var dividirTiles = ListTile.divideTiles(
+        else {
+          var dividedTiles = ListTile
+              .divideTiles(
                   tiles: snapshot.data.documents.map((doc) {
-                    return CategoriaTile(doc);
+                    return CategoryTile(doc);
                   }).toList(),
-                  color: Theme.of(context).primaryColor)
+                  color: Colors.grey[500])
               .toList();
 
           return ListView(
-            children: dividirTiles,
+            children: dividedTiles,
           );
         }
       },
